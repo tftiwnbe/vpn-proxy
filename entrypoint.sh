@@ -1,11 +1,12 @@
 #!/bin/sh
 set -e
-echo "nameserver 1.1.1.1" >/etc/resolv.conf
 
 if [[ -z "$EXPRESSVPN_CODE" ]] || [[ -z "$EXPRESSVPN_LOCATION" ]]; then
   echo "❌ Error: Can't get EXPRESSVPN_CODE or EXPRESSVPN_LOCATION variables!"
   exit 1
 fi
+
+sleep infinity
 
 echo "🔑 Activate ExpressVPN..."
 expressvpn activate --code "$EXPRESSVPN_CODE"

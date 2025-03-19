@@ -13,11 +13,10 @@ services:
     volumes:
       - ./wg0.conf:/etc/wireguard/wg0.conf:ro
       - ./danted.conf:/etc/sockd.conf:ro
+      - /sys/fs/cgroup:/sys/fs/cgroup:ro
+    network_mode: host
     cap_add:
       - NET_ADMIN
-      - SYS_MODULE
-    sysctls:
-      - net.ipv4.ip_forward=1
-      - net.ipv4.conf.all.src_valid_mark=1
+      - SYS_ADMIN
     restart: unless-stopped
-    command: ["/entrypoint.sh"]
+    privileged: true
